@@ -1,6 +1,11 @@
 name: GitHub Clone Count Update Everyday
 
 on:
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/clone.yml'
   schedule:
     - cron: "0 */24 * * *"
   workflow_dispatch:
@@ -88,3 +93,4 @@ jobs:
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
